@@ -25,7 +25,7 @@ Add these to your Webflow site's **Custom Code** section (in Project Settings > 
 <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.7.0/dist/cookieconsent.js"></script>
 
 <!-- Cookie Consent Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/COOKIES@main/cookie-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marektucek/cookies@main/cookie-style.css">
 
 <!-- Cookie Config & Loader -->
 <script>
@@ -92,7 +92,7 @@ Add these to your Webflow site's **Custom Code** section (in Project Settings > 
     }
   };
 </script>
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/COOKIES@main/cookie-loader.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/marektucek/cookies@main/cookie-loader.js"></script>
 ```
 
 #### In the `<body>` section (before closing `</body>`):
