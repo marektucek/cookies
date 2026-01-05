@@ -1,0 +1,29 @@
+{
+  "name": "cookie-consent-webflow",
+  "version": "1.0.0",
+  "description": "A plug-and-play Cookie Consent solution for Webflow sites with Google Consent Mode v2 integration",
+  "main": "cookie-loader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cookie",
+    "consent",
+    "webflow",
+    "google-consent-mode",
+    "gtm",
+    "gdpr",
+    "ccpa"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/COOKIES.git"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "cookieconsent": "^2.7.0"
+  }
+}
+

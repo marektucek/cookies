@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Example</title>
+    
+    <!-- Cookie Consent Library (v2.7+) -->
+    <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.7.0/dist/cookieconsent.js"></script>
+    
+    <!-- Cookie Consent Styles -->
+    <link rel="stylesheet" href="cookie-style.css">
+    
+    <!-- Optional: Custom CSS Variable Overrides -->
+    <style>
+        :root {
+            --cc-primary: #237afc;
+            --cc-primary-hover: #1e6ae8;
+            --cc-text: #333;
+            --cc-bg: #fff;
+        }
+    </style>
+    
+    <!-- Cookie Config -->
+    <script>
+        window.CookieConfig = {
+            defaultLanguage: 'en',
+            autorun: true,
+            pageScripts: true,
+            reloadOnChange: true,
+            reloadDelay: 500,
+            waitForUpdate: 500,
+            
+            consentModal: {
+                layout: 'bar',
+                position: 'bottom center',
+                transition: 'slide'
+            },
+            settingsModal: {
+                layout: 'box',
+                transition: 'slide'
+            },
+            
+            languages: {
+                en: {
+                    consent_modal: {
+                        title: "We use cookies",
+                        description: "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking 'Accept all', you consent to our use of cookies.",
+                        primary_btn: {
+                            text: "Accept all",
+                            role: "accept_all"
+                        },
+                        secondary_btn: {
+                            text: "Reject all",
+                            role: "accept_necessary"
+                        }
+                    },
+                    settings_modal: {
+                        title: "Cookie preferences",
+                        save_settings_btn: "Save settings",
+                        accept_all_btn: "Accept all",
+                        reject_all_btn: "Reject all",
+                        close_btn_label: "Close",
+                        blocks: [
+                            {
+                                title: "Cookie usage",
+                                description: "We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want."
+                            },
+                            {
+                                title: "Strictly necessary cookies",
+                                description: "These cookies are essential for the proper functioning of the website. Without these cookies, the website would not work properly.",
+                                toggle: {
+                                    value: "necessary",
+                                    enabled: true,
+                                    readonly: true
+                                }
+                            },
+                            {
+                                title: "Analytics cookies",
+                                description: "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.",
+                                toggle: {
+                                    value: "analytics",
+                                    enabled: false,
+                                    readonly: false
+                                }
+                            },
+                            {
+                                title: "Marketing cookies",
+                                description: "These cookies are used to deliver personalized advertisements to you and to measure the effectiveness of our advertising campaigns.",
+                                toggle: {
+                                    value: "marketing",
+                                    enabled: false,
+                                    readonly: false
+                                }
+                            }
+                        ]
+                    }
+                },
+                cs: {
+                    consent_modal: {
+                        title: "Používáme cookies",
+                        description: "Používáme cookies pro zlepšení vašeho prohlížení, personalizaci obsahu a analýzu návštěvnosti. Kliknutím na 'Přijmout vše' souhlasíte s použitím cookies.",
+                        primary_btn: {
+                            text: "Přijmout vše",
+                            role: "accept_all"
+                        },
+                        secondary_btn: {
+                            text: "Odmítnout vše",
+                            role: "accept_necessary"
+                        }
+                    },
+                    settings_modal: {
+                        title: "Nastavení cookies",
+                        save_settings_btn: "Uložit nastavení",
+                        accept_all_btn: "Přijmout vše",
+                        reject_all_btn: "Odmítnout vše",
+                        close_btn_label: "Zavřít",
+                        blocks: [
+                            {
+                                title: "Použití cookies",
+                                description: "Používáme cookies pro zajištění základních funkcí webu a zlepšení vašeho online zážitku. Můžete si vybrat pro každou kategorii, kdy chcete souhlasit."
+                            },
+                            {
+                                title: "Nezbytně nutné cookies",
+                                description: "Tyto cookies jsou nezbytné pro správné fungování webu. Bez těchto cookies by web nefungoval správně.",
+                                toggle: {
+                                    value: "necessary",
+                                    enabled: true,
+                                    readonly: true
+                                }
+                            },
+                            {
+                                title: "Analytické cookies",
+                                description: "Tyto cookies nám pomáhají pochopit, jak návštěvníci interagují s naším webem tím, že shromažďují a anonymně hlásí informace.",
+                                toggle: {
+                                    value: "analytics",
+                                    enabled: false,
+                                    readonly: false
+                                }
+                            },
+                            {
+                                title: "Marketingové cookies",
+                                description: "Tyto cookies se používají k doručování personalizovaných reklam a měření účinnosti našich reklamních kampaní.",
+                                toggle: {
+                                    value: "marketing",
+                                    enabled: false,
+                                    readonly: false
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            
+            onAccept: function(settings) {
+                console.log('Cookies accepted:', settings.level);
+            },
+            onChange: function(settings, changed) {
+                console.log('Cookies changed:', settings.level, changed);
+            },
+            onFirstAction: function(settings) {
+                console.log('First action:', settings.accepted_categories);
+            }
+        };
+    </script>
+    
+    <!-- Cookie Loader -->
+    <script src="cookie-loader.js"></script>
+</head>
+<body>
+    <h1>Cookie Consent Example</h1>
+    <p>This is an example page demonstrating the cookie consent solution.</p>
+    
+    <!-- Example: Button to open cookie settings -->
+    <button data-cc="settings" style="padding: 10px 20px; margin: 20px 0; cursor: pointer;">
+        Open Cookie Settings
+    </button>
+    
+    <!-- Google Tag Manager (example) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Your GTM code here
+        // gtag('js', new Date());
+        // gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>
+
