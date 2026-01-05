@@ -166,8 +166,25 @@
     
     <!-- Cookie Loader -->
     <script src="cookie-loader.js"></script>
+    
+    <!-- Google Tag Manager -->
+    <!-- Replace GTM-XXXXXXX with your actual GTM Container ID -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXXXXXX');
+    </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <!-- Replace GTM-XXXXXXX with your actual GTM Container ID -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
     <h1>Cookie Consent Example</h1>
     <p>This is an example page demonstrating the cookie consent solution.</p>
     
@@ -175,16 +192,6 @@
     <button data-cc="settings" style="padding: 10px 20px; margin: 20px 0; cursor: pointer;">
         Open Cookie Settings
     </button>
-    
-    <!-- Google Tag Manager (example) -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        
-        // Your GTM code here
-        // gtag('js', new Date());
-        // gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
 </body>
 </html>
 

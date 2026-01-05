@@ -14,6 +14,8 @@ A plug-and-play Cookie Consent solution for Webflow sites that integrates with G
 
 ## Quick Start
 
+**📖 New to Webflow?** See **[WEBFLOW-SETUP.md](WEBFLOW-SETUP.md)** for step-by-step instructions.
+
 ### 1. Include Required Files
 
 Add these to your Webflow site's **Custom Code** section (in Project Settings > Custom Code):
@@ -25,7 +27,7 @@ Add these to your Webflow site's **Custom Code** section (in Project Settings > 
 <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.7.0/dist/cookieconsent.js"></script>
 
 <!-- Cookie Consent Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marektucek/cookies@main/cookie-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/COOKIES@main/cookie-style.css">
 
 <!-- Cookie Config & Loader -->
 <script>
@@ -92,38 +94,154 @@ Add these to your Webflow site's **Custom Code** section (in Project Settings > 
     }
   };
 </script>
-<script src="https://cdn.jsdelivr.net/gh/marektucek/cookies@main/cookie-loader.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/COOKIES@main/cookie-loader.js"></script>
 ```
 
-#### In the `<body>` section (before closing `</body>`):
+#### In the `<head>` section (AFTER cookie-loader.js):
 
 ```html
 <!-- Google Tag Manager -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX'); // Replace GTM-XXXXXXX with your GTM ID
 </script>
-<!-- GTM Container -->
 ```
 
-### 2. Customize Colors (Optional)
+#### In the `<body>` section (right after opening `<body>` tag):
 
-Add CSS variable overrides in Webflow's **Custom Code** section:
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" // Replace GTM-XXXXXXX with your GTM ID
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+```
+
+**Important:** Replace `GTM-XXXXXXX` with your actual Google Tag Manager Container ID (e.g., `GTM-ABC123`). You can find this in your GTM dashboard under Admin > Container Settings.
+
+### 2. Add Google Tag Manager Container ID
+
+**In Webflow:** Go to Project Settings > Custom Code
+
+**In the `<head>` section**, add your GTM container code AFTER the cookie-loader.js script:
+
+```html
+<!-- Google Tag Manager -->
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');
+</script>
+```
+
+**In the `<body>` section**, add the noscript version right after the opening `<body>` tag:
+
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+```
+
+**Replace `GTM-XXXXXXX`** with your actual GTM Container ID (found in GTM dashboard: Admin > Container Settings).
+
+### 3. Customize Styling
+
+#### Option A: CSS Variables (Recommended - Easy in Webflow)
+
+Add CSS variable overrides in Webflow's **Custom Code** section (`<head>`):
 
 ```html
 <style>
   :root {
-    --cc-primary: #237afc;
-    --cc-primary-hover: #1e6ae8;
-    --cc-text: #333;
-    --cc-bg: #fff;
-    --cc-link: #237afc;
-    /* ... more variables */
+    /* Primary Colors */
+    --cc-primary: #237afc;              /* Primary button background */
+    --cc-primary-hover: #1e6ae8;        /* Primary button hover */
+    
+    /* Text Colors */
+    --cc-text: #333;                     /* Main text color */
+    --cc-text-light: #555;               /* Secondary text */
+    --cc-text-lighter: #666;             /* Tertiary text */
+    
+    /* Background Colors */
+    --cc-bg: #fff;                       /* Main background */
+    --cc-bg-light: #f9f9f9;              /* Light background (modal footer) */
+    --cc-bg-lighter: #f5f5f5;            /* Lighter background (category badges) */
+    
+    /* Border & UI Colors */
+    --cc-border: #eee;                    /* Border color */
+    --cc-border-light: #f1f1f1;           /* Light border (secondary button) */
+    --cc-link: #237afc;                   /* Link color */
+    --cc-overlay: rgba(0, 0, 0, 0.6);     /* Modal overlay */
+    --cc-toggle-bg: #ccc;                 /* Toggle inactive state */
+    --cc-toggle-active: #237afc;          /* Toggle active state */
+    --cc-close: #999;                     /* Close button color */
+    
+    /* Typography */
+    --cc-font-family: Arial, Helvetica, sans-serif;
+    --cc-font-size: 14px;
+    --cc-font-size-small: 13px;
+    --cc-font-size-large: 16px;
+    --cc-font-size-title: 18px;
+    
+    /* Spacing (optional) */
+    --cc-spacing-lg: 20px;
+    --cc-spacing-xl: 25px;
+    
+    /* Border Radius (optional) */
+    --cc-radius-sm: 4px;
+    --cc-radius-md: 8px;
   }
 </style>
 ```
 
-### 3. Add Settings Button (Optional)
+#### Option B: Direct CSS Overrides (Advanced)
+
+If you need more control, you can override specific elements directly:
+
+```html
+<style>
+  /* Customize the banner */
+  #cm {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-top: none;
+  }
+  
+  /* Customize primary button */
+  #c-p-bn {
+    background: #ff6b6b;
+    border-radius: 25px;
+    padding: 12px 30px;
+  }
+  
+  /* Customize modal */
+  #s-cnt {
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  
+  /* Customize toggles */
+  .c-tgl:checked + .c-tg {
+    background-color: #ff6b6b;
+  }
+</style>
+```
+
+#### Option C: Webflow Designer (Visual Styling)
+
+Since the cookie consent elements are dynamically injected, you can't style them directly in Webflow Designer. However, you can:
+
+1. Add the CSS variable overrides in Custom Code (Option A above)
+2. Use Webflow's Custom Code to add additional CSS targeting the cookie consent IDs
+3. Test changes in the browser's developer tools, then copy the CSS to Custom Code
+
+### 4. Add Settings Button (Optional)
 
 Add a button to open cookie settings anywhere on your site:
 
@@ -185,22 +303,27 @@ window.CookieConfig = {
 
 ## CSS Variables
 
-All colors and styling can be customized via CSS variables:
+All colors and styling can be customized via CSS variables. See **[STYLING-GUIDE.md](STYLING-GUIDE.md)** for a complete guide.
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--cc-primary` | `#237afc` | Primary button color |
-| `--cc-primary-hover` | `#1e6ae8` | Primary button hover |
-| `--cc-text` | `#333` | Main text color |
-| `--cc-text-light` | `#555` | Light text color |
-| `--cc-bg` | `#fff` | Background color |
-| `--cc-link` | `#237afc` | Link color |
-| `--cc-overlay` | `rgba(0,0,0,0.6)` | Modal overlay |
-| `--cc-toggle-active` | `#237afc` | Active toggle color |
-| `--cc-font-family` | `Arial, Helvetica, sans-serif` | Font family |
-| `--cc-font-size` | `14px` | Base font size |
+Quick example - add to Webflow Custom Code (`<head>`):
 
-See `cookie-style.css` for the complete list of variables.
+```html
+<style>
+  :root {
+    --cc-primary: #237afc;        /* Primary button color */
+    --cc-primary-hover: #1e6ae8;  /* Button hover */
+    --cc-text: #333;              /* Text color */
+    --cc-bg: #fff;                /* Background */
+    --cc-link: #237afc;           /* Links */
+  }
+</style>
+```
+
+**See [STYLING-GUIDE.md](STYLING-GUIDE.md) for:**
+- Complete list of all CSS variables
+- Advanced styling examples
+- Element ID reference
+- Common customization patterns
 
 ## How It Works
 
